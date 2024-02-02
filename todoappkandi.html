@@ -1,0 +1,28 @@
+<head> 
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+<style>
+    .completed{text-decoration: line-through;}
+</style>
+</head>
+<body>
+<div x-data="{ todos:[], input: '', additionaldata:false}">    
+    <h3>Things to do!</h3>
+    <template x-for="todo in todos">
+        <div>
+            <input type="checkbox" x-model="todo.completed">
+            <span x-text="todo.name" x-bind:class="{'completed': todo.completed}"></span>
+        </div>
+    </template>
+    <form x-on:submit.prevent>
+        <input x-model="input" placeholder="Add Todo.." type="text">
+        <button x-on:click=  "if(input.length>0){todos.push({name:input, completed:false}); input=''}">Add</button>
+    </form>  
+
+    <button x-on:click="additionaldata = ! additionaldata">Additional functionality</button>
+    <div x-show="additionaldata">
+        <button x-on:click=  "todos= todos.filter((todo)=>!todo.completed)">Clear completed</button>
+        <button x-on:click=  "todos= []">Clear all</button>
+        <button x-on:click=  "todos.forEach((todo) => todo.completed = true)">Complete all</button>
+    </div>
+</div>
+</body>
