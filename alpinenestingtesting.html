@@ -1,0 +1,19 @@
+<head> 
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <style>
+        .completed{text-decoration: line-through;}
+    </style>
+</head>
+<body>
+<div x-data="{ foo: 'bar' }">
+    <span x-text="foo"><!-- Will output: "bar" --></span>
+ 
+    <div x-data="{ bar: 'baz' }">
+        <span x-text="foo"><!-- Will output: "bar" --></span>
+ 
+        <div x-data="{ foo: 'bob' }">
+            <span x-text="foo"><!-- Will output: "bob" --></span>
+        </div>
+    </div>
+</div>
+</body>

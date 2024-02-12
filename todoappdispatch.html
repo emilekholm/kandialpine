@@ -1,0 +1,8 @@
+<!-- Adding dispatch to the todoinput -->
+$dispatch('todoAdded', { todo: input })
+<script>
+    window.addEventListener('todoAdded', function(event) {
+        console.log('Todo added event detected!');
+        console.log('Event Detail:', event.detail);
+    });
+</script>

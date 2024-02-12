@@ -1,0 +1,6 @@
+
+<form x-on:submit.prevent>
+    <input x-model="input" placeholder="Add Todo.." type="text">
+    <button x-on:click=  "if(input.length>0){todos.push({name:input, completed:false}); input=''}">Add</button>
+</form>  
+
