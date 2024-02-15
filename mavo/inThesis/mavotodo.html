@@ -1,0 +1,25 @@
+<head>
+    <link rel="stylesheet" href="https://get.mavo.io/mavo.css"/>
+    <script src="https://get.mavo.io/mavo.js"></script>
+</head>
+<body>
+    <h1> My tasks: </h1>
+    <div mv-app="todoApp" mv-storage="local" mv-mode="edit" mv-bar="none">
+        Things to do: 
+        <ul mv-list >
+            <li property="todo" mv-list-item >
+                <label>
+                    <input property="completed" type="checkbox" />
+                    <span property="taskTitle"></span>
+                </label>
+            </li>
+        </ul>
+        <fieldset>
+            <legend>Additional options</legend>
+            <button class="clear-completed" mv-action="delete(todo where completed)">Clear completed</button>
+            <button class="clear-all" mv-action="delete(todo)">Clear all</button>
+            <button mv-action="set(todo.completed, true)">Complete all</button>
+            <meta property="height" content="50" mv-mode="read">
+        </fieldset>
+    </div>
+</body>
