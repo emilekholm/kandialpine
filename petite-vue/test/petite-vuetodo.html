@@ -1,0 +1,56 @@
+<head>
+  <meta charset="UTF-8">
+  <title>TodoApp</title>
+</head>
+  <body>
+    <div id="app">
+      <h3>Things to do!</h3>
+      <ul>
+        <li v-for="todo in todos" :key="todo.id">
+          <input type="checkbox" v-model="todo.completed">
+          <span>{{ todo.title }}</span>
+        </li>
+      </ul>
+      <input
+        placeholder="Add Todo.."
+        v-model="newTodo"
+        @keyup.enter="addTodo"
+      />
+      <button @click="addTodo">Add</button>
+      <div>
+        <button @click="if(showAdd){showAdd= false}else{showAdd=true}">Additional functionality</button>
+        <div v-show="showAdd">
+          <button @click="clearCompleted">Clear completed</button>
+          <button @click="todos=[]">Clear all</button>
+          <button @click="completeAll">Complete all</button>
+        </div>
+      </div>
+    </div>
+    <script type="module">
+      import {createApp} from "https://unpkg.com/petite-vue?module";
+      createApp({
+        todos: [],
+        newTodo: '',
+        showAdd: false,
+        addTodo() {
+          var value = this.newTodo && this.newTodo.trim()
+          if (!value) {
+            return
+          }
+          this.todos.push({
+            id: Date.now(),
+            title: value,
+            completed: false
+          })
+          this.newTodo = ''
+        },
+        clearCompleted() {
+          this.todos = this.todos.filter(todo => !todo.completed);
+        },
+        completeAll() {
+          this.todos.forEach(todo => todo.completed = true);
+        }
+      }).mount("#app")
+    </script>
+  </body>
+</html>
